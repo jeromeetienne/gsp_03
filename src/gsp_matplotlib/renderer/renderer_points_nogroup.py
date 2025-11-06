@@ -56,18 +56,18 @@ class RendererPoints:
         # Create the artists if needed
         # =============================================================================
 
-        if points.uuid not in renderer._artists:
+        if points._uuid not in renderer._artists:
             mpl_path_collection = axes.scatter([], [])  # type: ignore
             mpl_path_collection.set_visible(False)
             # hide until properly positioned and sized
-            renderer._artists[points.uuid] = mpl_path_collection
+            renderer._artists[points._uuid] = mpl_path_collection
             axes.add_artist(mpl_path_collection)
 
         # =============================================================================
         # Get existing artists
         # =============================================================================
 
-        mpl_path_collection = typing.cast(matplotlib.collections.PathCollection, renderer._artists[points.uuid])
+        mpl_path_collection = typing.cast(matplotlib.collections.PathCollection, renderer._artists[points._uuid])
         mpl_path_collection.set_visible(True)
 
         # =============================================================================

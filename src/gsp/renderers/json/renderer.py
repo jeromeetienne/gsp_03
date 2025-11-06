@@ -20,10 +20,10 @@ class JsonRenderer:
         canvas_msg = gsp_messages.CanvasCreate(
             command_name="CanvasCreate",
             message_id=self.get_message_id(),
-            canvas_uuid=self.canvas.uuid,
-            width=self.canvas.width,
-            height=self.canvas.height,
-            dpi=self.canvas.dpi,
+            canvas_uuid=self.canvas._uuid,
+            width=self.canvas._width,
+            height=self.canvas._height,
+            dpi=self.canvas._dpi,
         )
         messages.append(canvas_msg)
 
@@ -33,12 +33,12 @@ class JsonRenderer:
             viewport_msg = gsp_messages.ViewportCreate(
                 command_name="ViewportCreate",
                 message_id=self.get_message_id(),
-                viewport_uuid=viewport.uuid,
-                canvas_uuid=self.canvas.uuid,
-                x=viewport.x,
-                y=viewport.y,
-                width=viewport.width,
-                height=viewport.height,
+                viewport_uuid=viewport._uuid,
+                canvas_uuid=self.canvas._uuid,
+                x=viewport.get_origin_x(),
+                y=viewport.get_origin_y(),
+                width=viewport._width,
+                height=viewport._height,
             )
             messages.append(viewport_msg)
 

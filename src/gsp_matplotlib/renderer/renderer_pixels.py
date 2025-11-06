@@ -74,16 +74,16 @@ class RendererPixels:
 
         # update stored group count
         old_group_count = None
-        if visual.uuid in renderer._group_count:
-            old_group_count = renderer._group_count[visual.uuid]
-        renderer._group_count[visual.uuid] = group_count
+        if visual._uuid in renderer._group_count:
+            old_group_count = renderer._group_count[visual._uuid]
+        renderer._group_count[visual._uuid] = group_count
 
         # If the group count has changed, destroy old artists
         if old_group_count is not None and old_group_count != group_count:
             RendererPixels.destroy_artists(renderer, axes, visual, old_group_count)
 
         # Create artists if they do not exist
-        artist_uuid_sample = f"{visual.uuid}_group_0"
+        artist_uuid_sample = f"{visual._uuid}_group_0"
         if artist_uuid_sample not in renderer._artists:
             RendererPixels.create_artists(renderer, axes, visual, group_count)
 
@@ -93,7 +93,7 @@ class RendererPixels:
 
         changed_artists: list[matplotlib.artist.Artist] = []
         for group_index in range(group_count):
-            group_uuid = f"{visual.uuid}_group_{group_index}"
+            group_uuid = f"{visual._uuid}_group_{group_index}"
 
             # =============================================================================
             # Get existing artists
@@ -131,7 +131,7 @@ class RendererPixels:
             mpl_path_collection.set_linewidth(0)
             mpl_path_collection.set_visible(False)
             # hide until properly positioned and sized
-            group_uuid = f"{visual.uuid}_group_{group_index}"
+            group_uuid = f"{visual._uuid}_group_{group_index}"
             renderer._artists[group_uuid] = mpl_path_collection
             axes.add_artist(mpl_path_collection)
 
@@ -142,7 +142,7 @@ class RendererPixels:
         Trigger a bug in matplotlib where artists are not properly removed from the axes.
         """
         for group_index in range(group_count):
-            group_uuid = f"{visual.uuid}_group_{group_index}"
+            group_uuid = f"{visual._uuid}_group_{group_index}"
             mpl_path_collection = typing.cast(matplotlib.collections.PathCollection, renderer._artists[group_uuid])
             del renderer._artists[group_uuid]
             mpl_path_collection.remove()

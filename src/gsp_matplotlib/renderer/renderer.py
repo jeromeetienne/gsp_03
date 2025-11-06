@@ -29,7 +29,7 @@ class MatplotlibRenderer:
         self._group_count: dict[str, int] = {}
 
         # Create a figure of 512x512 pixels
-        self._figure = matplotlib.pyplot.figure(figsize=(canvas.width / canvas.dpi, canvas.height / canvas.dpi), dpi=canvas.dpi)
+        self._figure = matplotlib.pyplot.figure(figsize=(canvas._width / canvas._dpi, canvas._height / canvas._dpi), dpi=canvas._dpi)
 
     def render(self, viewports: Sequence[Viewport], visuals: Sequence[VisualBase], model_matrices: Sequence[TransBuf], cameras: Sequence[Camera]):
 
@@ -45,13 +45,13 @@ class MatplotlibRenderer:
         # Create all the axes if needed
         # =============================================================================
         for viewport in viewports:
-            if viewport.uuid in self._axes:
+            if viewport._uuid in self._axes:
                 continue
             axes_rect = (
-                viewport.x / self.canvas.width,
-                viewport.y / self.canvas.height,
-                viewport.width / self.canvas.width,
-                viewport.height / self.canvas.height,
+                viewport.get_origin_x() / self.canvas._width,
+                viewport.get_origin_y() / self.canvas._height,
+                viewport._width / self.canvas._width,
+                viewport._height / self.canvas._height,
             )
             axes: matplotlib.axes.Axes = matplotlib.pyplot.axes(axes_rect)
             # this should be -1 to 1 - from normalized device coordinates - https://en.wikipedia.org/wiki/Graphics_pipeline
@@ -59,7 +59,7 @@ class MatplotlibRenderer:
             axes.set_xlim(-1, 1)
             axes.set_ylim(-1, 1)
             # store axes for this viewport
-            self._axes[viewport.uuid] = axes
+            self._axes[viewport._uuid] = axes
 
         # =============================================================================
         # Render each visual
@@ -71,7 +71,7 @@ class MatplotlibRenderer:
     def _render_visual(self, viewport: Viewport, visual: VisualBase, model_matrix: TransBuf, camera: Camera):
         """Render a single visual in a given viewport using the specified camera."""
 
-        axes = self._axes[viewport.uuid]
+        axes = self._axes[viewport._uuid]
         if isinstance(visual, Pixels):
             from gsp_matplotlib.renderer.renderer_pixels import RendererPixels
 
@@ -84,4 +84,4 @@ class MatplotlibRenderer:
             raise NotImplementedError(f"Rendering for visual type {type(visual)} is not implemented.")
 
     def get_axes_for_viewport(self, viewport: Viewport) -> matplotlib.axes.Axes:
-        return self._axes[viewport.uuid]
+        return self._axes[viewport._uuid]
