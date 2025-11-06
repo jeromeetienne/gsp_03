@@ -2,13 +2,11 @@
 from typing import Sequence
 import time
 
-
 # pip imports
 import numpy as np
 import matplotlib.pyplot
 import matplotlib.animation
 import matplotlib.artist
-
 
 # local imports
 from gsp.core import Canvas, Viewport, VisualBase
@@ -18,7 +16,6 @@ from gsp.core import Camera
 from gsp_matplotlib.renderer import MatplotlibRenderer
 from gsp_extra.bufferx import Bufferx
 from gsp_extra.object3d import Object3D
-import gsp_extra.glm as glm
 
 
 def main():

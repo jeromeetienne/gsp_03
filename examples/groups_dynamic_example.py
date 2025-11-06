@@ -5,7 +5,6 @@ import time
 # pip imports
 import numpy as np
 import matplotlib.pyplot
-import matplotlib.animation
 import matplotlib.artist
 
 

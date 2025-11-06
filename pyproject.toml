@@ -1,5 +1,5 @@
 [project]
-name = "gsp-n"
+name = "gsp"
 version = "0.1.0"
 description = ""
 authors = [
@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "numpy (>=2.3.4,<3.0.0)",
-    "protobuf (>=6.33.0,<7.0.0)"
+    "matplotlib (>=3.10.7,<4.0.0)"
 ]
 
 [build-system]
