@@ -1,0 +1,26 @@
+- issue if the user changes the groups after having created the visual
+  - this would require to detect when the groups changes
+  - find examples to test the groups
+- BUG: if i dont draw a visual which were there before, it is never removed from the renderer
+  - https://chatgpt.com/c/690b2e53-4058-8328-93e5-f598f1696929
+- make transform chain
+  - download
+  - make one user space `TransformLinkImmediate`
+- the attributes check system for all visual
+  - should be done in the renderer too (post transformation)
+  - static .sanity_check_attributes()
+  - non static .check_attributes()
+  - non static .set_attributes()
+- generate or write a .pyi files for the new classes
+
+---
+
+- DONE make the groups in pixels and points
+- DONE make groups computation in core with common functions
+- DONE make the 3d transformations in pixels and points
+- DONE implement Pixels
+- DONE write a simple example using Pixels
+- support math operations
+  - make the pixels rotate
+- find a way to generate the .pyi files automatically
+- update documentation

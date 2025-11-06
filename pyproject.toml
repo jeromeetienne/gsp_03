@@ -1,0 +1,21 @@
+[project]
+name = "gsp-n"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jerome Etienne",email = "jerome.etienne@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy (>=2.3.4,<3.0.0)",
+    "protobuf (>=6.33.0,<7.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# Configuration for the Black code formatter 
+[tool.black]
+line-length = 160   # to match the 79 character limit of PEP 8, but allow some extra space for longer lines
