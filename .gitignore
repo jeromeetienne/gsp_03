@@ -2,3 +2,7 @@
 .venv/
 # ignore compiled python files
 __pycache__/
+# ignore mypy cache
+.mypy_cache/
+# ignore pytest cache
+.pytest_cache/
