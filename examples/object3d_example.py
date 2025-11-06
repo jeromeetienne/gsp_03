@@ -1,6 +1,7 @@
 # stdlib imports
 from typing import Sequence
 import time
+import os
 
 # pip imports
 import numpy as np
@@ -114,6 +115,11 @@ def main():
     # =============================================================================
     # matplotlib animation
     # =============================================================================
+
+    # handle non-interactive mode for tests
+    inTest = os.environ.get("GSP_INTERACTIVE_MODE") == "False"
+    if inTest:
+        return
 
     def update(frame) -> Sequence[matplotlib.artist.Artist]:
 

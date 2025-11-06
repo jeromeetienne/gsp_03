@@ -9,13 +9,15 @@ pytest: ## Run pytest on the tests/ directory
 pytest_verbose: ## Run pytest in verbose mode on the tests/ directory
 	cd tests && pytest -v -W ignore::DeprecationWarning
 
+run_all_examples: ## Run all examples to ensure they work
+	python3 ./tools/run_all_examples.py
 
 ##############################################################################
 
 lint: ## Run pyright type checker on src and examples
 	pyright ./src/gsp/ ./src/gsp_matplotlib/ ./examples/
 
-test: lint pytest_verbose ## Run all tests
+test: lint pytest_verbose run_all_examples ## Run all tests
 	@echo "All tests passed!"
 
 stubs_clean: ## Remove all generated type stubs

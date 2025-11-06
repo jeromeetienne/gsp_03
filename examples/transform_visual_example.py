@@ -1,3 +1,6 @@
+# stdlib imports
+import os
+
 # pip imports
 import numpy as np
 import matplotlib.pyplot
@@ -76,6 +79,11 @@ def main():
     # Create a renderer and render the scene
     matplotlibRenderer = MatplotlibRenderer(canvas)
     matplotlibRenderer.render([viewport], [pixels], [model_matrix], [camera])
+
+    # handle non-interactive mode for tests
+    inTest = os.environ.get("GSP_INTERACTIVE_MODE") == "False"
+    if inTest:
+        return
 
     matplotlib.pyplot.show()
 
