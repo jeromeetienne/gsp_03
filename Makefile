@@ -25,3 +25,4 @@ stubs_clean: ## Remove all generated type stubs
 
 stubs_gsp: stubs_clean ## Generate type stubs for src/gsp
 	stubgen -p gsp -o ./stubs/
+	stubgen -p gsp_matplotlib -o ./stubs/
